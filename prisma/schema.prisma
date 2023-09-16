@@ -11,11 +11,16 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 
-    @@index([name])
+
+
+model Post {
+    
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    content   String   @db.VarChar(255)
+
+    authorID  String
+
+   @@index([authorID])
 }
