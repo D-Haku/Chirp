@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
-import { SignUp } from "@clerk/nextjs";
+
+
 import { useUser } from "@clerk/nextjs";
-import { SignIn } from "@clerk/nextjs";
+
 import { SignInButton } from "@clerk/nextjs";
 import { SignOutButton } from "@clerk/nextjs";
 import { api } from "~/utils/api";
-import { UserButton } from "@clerk/nextjs";
+
 export default function Home() {
  
   const  user = useUser();
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         <div>
-          {data?.map((post)=>(<div>  {post.content}</div>))}
+          {data?.map((post)=>(<div key={post.id} >  {post.content}</div>))}
         </div>
         
       </main>
