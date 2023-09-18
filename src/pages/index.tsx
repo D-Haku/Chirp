@@ -16,7 +16,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { PageLayout } from "~/components/layout";
+import { PageLayout } from "src/components/layout";
 
 
 dayjs.extend(relativeTime);
