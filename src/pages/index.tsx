@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 
 import { SignInButton } from "@clerk/nextjs";
-import { SignOutButton } from "@clerk/nextjs";
+
 import { api, RouterOutputs } from "~/utils/api";
 
 import dayjs from "dayjs";
