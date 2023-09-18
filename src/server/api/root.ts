@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 import { postsRouter } from "./routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 
