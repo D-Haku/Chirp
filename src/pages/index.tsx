@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 import relativeTime from "dayjs/plugin/relativeTime";
 //import { LoadingPage } from "src/components/loading";
-import { loadingPage } from "~/components/loading";
+import { LoadingPage } from "~/components/loading";
 import { useState } from "react";
 
 
@@ -49,7 +49,7 @@ const CreatePostWizard = ()=>{
     onChange={(e) => setInput(e.target.value)}
     disabled={isPosting}
     />
-    <button onClick={()=>mutate({content: input})}>post</button>
+   <button onClick={() => mutate({ content: input ?? "" })}>Post</button>
   </div>
 }
 type PostWithUser = RouterOutputs["posts"]["getAll"][number]
@@ -80,7 +80,7 @@ const PostView = (props: PostWithUser )=>{
 const Feed = ()=>{
   const { data , isLoading: postsLoading} = api.posts.getAll.useQuery();
 
-  if(postsLoading) return <loadingPage/>
+  if(postsLoading) return <LoadingPage/>
 
   if(!data) return <div>something went wrong </div>
 
