@@ -10,7 +10,7 @@ import { api, RouterOutputs } from "~/utils/api";
 import dayjs from "dayjs";
 
 import relativeTime from "dayjs/plugin/relativeTime";
-import  { LoadingPage } from "~/components/loading";
+import  { LoadingPage } from "src/components/loading";
 import { useState } from "react";
 
 
