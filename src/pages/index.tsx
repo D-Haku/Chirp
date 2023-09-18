@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 
 import relativeTime from "dayjs/plugin/relativeTime";
 import  { LoadingPage } from "~/components/loading";
+import { useState } from "react";
 
 
 dayjs.extend(relativeTime);
@@ -18,7 +19,19 @@ dayjs.extend(relativeTime);
 const CreatePostWizard = ()=>{
 
   const {user} = useUser();
-  console.log(user);
+
+  const [input,setInput] = useState();
+  
+  const ctx = api.useContext();
+
+  const {mutate,isLoading: isPosting} = api.posts.create.useMutation({
+    onSuccess:()=>{
+      setInput("");
+      void ctx.posts.getAll.invalidate()
+    }
+  });
+
+  
 
   if (!user) return null;
 
@@ -29,7 +42,13 @@ const CreatePostWizard = ()=>{
     height={56}
     
     />
-    <input  placeholder="whats happening?!"  className=" grow bg-transparent outline-none " />
+    <input  placeholder="whats happening?!"  className=" grow bg-transparent outline-none "
+    type="text"
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    disabled={isPosting}
+    />
+    <button onClick={()=>mutate({content: input})}>post</button>
   </div>
 }
 type PostWithUser = RouterOutputs["posts"]["getAll"][number]
@@ -66,7 +85,7 @@ const Feed = ()=>{
 
   return(
     <div className="flex flex-col">
-          {[...data, ...data]?.map((fullPost)=>(
+          {data.map((fullPost)=>(
             <PostView {...fullPost} key={fullPost.post.id}/>
           ))}
         </div>
