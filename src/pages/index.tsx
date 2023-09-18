@@ -32,7 +32,7 @@ const CreatePostWizard = ()=>{
   const {mutate,isLoading: isPosting} = api.posts.create.useMutation({
     onSuccess:()=>{
       setInput("");
-      void ctx.posts.getAll.invalidate()
+      void ctx.posts.getAll.invalidate
     },
 
     onError:(e)=>{
