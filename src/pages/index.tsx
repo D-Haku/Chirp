@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 import relativeTime from "dayjs/plugin/relativeTime";
 //import { LoadingPage } from "src/components/loading";
-import { LoadingPage } from "~/components/loading";
+import { loadingPage } from "~/components/loading";
 import { useState } from "react";
 
 
@@ -80,7 +80,7 @@ const PostView = (props: PostWithUser )=>{
 const Feed = ()=>{
   const { data , isLoading: postsLoading} = api.posts.getAll.useQuery();
 
-  if(postsLoading) return <LoadingPage></LoadingPage>;
+  if(postsLoading) return <loadingPage/>
 
   if(!data) return <div>something went wrong </div>
 
