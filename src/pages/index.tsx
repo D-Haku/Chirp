@@ -21,14 +21,13 @@ const CreatePostWizard = ()=>{
 
   const {user} = useUser();
 
-  const [input,setInput] = useState();
+  const [input,setInput] = useState<string>();
   
   const ctx = api.useContext();
 
   const {mutate,isLoading: isPosting} = api.posts.create.useMutation({
     onSuccess:()=>{
-      const newLocal = "";
-      setInput(newLocal);
+      setInput("");
       void ctx.posts.getAll.invalidate()
     }
   });
