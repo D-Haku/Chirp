@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link"
 
 import { useUser } from "@clerk/nextjs";
 
@@ -94,9 +95,13 @@ const PostView = (props: PostWithUser )=>{
     />
     <div className="flex flex-col"> 
     <div className="flex  text-slate-300 gap-1"> 
-    <span>{`@${author.username}`} </span>  <span className="font-thin"> {` · ${dayjs(
+    
+    <Link href={`/@${author.username}`}><span>{`@${author.username}`} </span> </Link> 
+    <Link href={`/post/${post.id}`}>
+    <span className="font-thin"> {` · ${dayjs(
       post.createdAt
       ).fromNow(true)} ago`}</span> 
+      </Link>
     </div>
           <span className="text-2xl">{post.content}</span>
     
