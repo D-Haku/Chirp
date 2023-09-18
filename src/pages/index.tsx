@@ -27,7 +27,8 @@ const CreatePostWizard = ()=>{
 
   const {mutate,isLoading: isPosting} = api.posts.create.useMutation({
     onSuccess:()=>{
-      setInput("");
+      const newLocal = "";
+      setInput(newLocal);
       void ctx.posts.getAll.invalidate()
     }
   });
