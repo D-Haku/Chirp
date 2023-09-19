@@ -7,6 +7,11 @@ import { useUser } from "@clerk/nextjs";
 
 
 import { api } from "~/utils/api";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { PageLayout } from "~/components/layout";
+import { LoadingPage } from "~/components/loading";
+import { PostView } from "~/components/postview";
+import { generateServerHelper } from "~/server/helpers/ssghelper";
 
 
 
@@ -68,23 +73,12 @@ if (!data) return <div></div>;
     </>
   );
 }
-import { createServerSideHelpers } from '@trpc/react-query/server';
 
-import superjson from 'superjson';
-import { appRouter } from "~/server/api/root";
-import { db } from "~/server/db";
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import { PageLayout } from "~/components/layout";
-import { LoadingPage } from "~/components/loading";
-import { PostView } from "~/components/postview";
+
 
 
 export const getStaticProps: GetStaticProps = async (context) =>{
-  const helpers = createServerSideHelpers({
-    router: appRouter,
-    ctx: {db, userId: null},
-    transformer: superjson, // optional - adds superjson serialization
-  });
+  const helpers = generateServerHelper();
 
   const slug = context.params?.slug;
 
